@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkBotz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: #ffd93d;
+        transform: translateY(-2px);
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ffd93d;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease;
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d, #4ecdc4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradient 3s ease infinite, fadeInUp 1s ease;
+    }
+
+    .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 15px 40px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease 0.4s both;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+    }
+
+    /* Floating Elements */
+    .floating-element {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-element:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+        top: 60%;
+        right: 15%;
+        animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+    }
+
+    /* Latest Event Section */
+    .latest-event {
+        padding: 5rem 0;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+    }
+
+    .latest-event h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .latest-event-card {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem;
+        border-radius: 25px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .event-banner {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .event-badge {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff6b6b, #ffa726);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        animation: pulse 2s ease infinite;
+    }
+
+    .event-banner h3 {
+        font-size: 2.5rem;
+        color: #ffd93d;
+        margin-bottom: 0.5rem;
+    }
+
+    .event-tagline {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-style: italic;
+    }
+
+    .event-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 2rem 0;
+    }
+
+    .event-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .info-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        width: 40px;
+        text-align: center;
+    }
+
+    .info-item strong {
+        color: #ff6b6b;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-item p {
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+
+    .countdown-container {
+        text-align: center;
+    }
+
+    .countdown-container h4 {
+        color: #ffd93d;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+
+    .countdown-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .countdown-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #4ecdc4;
+        line-height: 1;
+    }
+
+    .countdown-label {
+        display: block;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 0.5rem;
+    }
+
+    .event-description {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .event-description h4 {
+        color: #ffd93d;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .learning-points {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .point {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+    }
+
+    .event-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .register-btn, .learn-more-btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .register-btn {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+    }
+
+    .learn-more-btn {
+        background: transparent;
+        color: #ffd93d;
+        border: 2px solid #ffd93d;
+    }
+
+    .register-btn:hover, .learn-more-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .learn-more-btn:hover {
+        background: #ffd93d;
+        color: #333;
+    }
+
+    /* Events Section */
+    .events {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, rgba(118, 75, 162, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+    }
+
+    .events h2, .members h2, .contact h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .event-card {
+        display: flex;
+        padding: 2rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .event-date {
+        text-align: center;
+        margin-right: 1.5rem;
+        min-width: 80px;
+    }
+
+    .event-date .day {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #ff6b6b;
+        line-height: 1;
+    }
+
+    .event-date .month {
+        display: block;
+        font-size: 1rem;
+        color: #ffd93d;
+        font-weight: bold;
+    }
+
+    .event-content h3 {
+        color: #ffd93d;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .event-time, .event-location {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0.25rem 0;
+    }
+
+    .event-description {
+        margin: 1rem 0;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .event-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .event-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .event-btn.view-more {
+        background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        color: white;
+    }
+
+    .event-btn.apply {
+        background: linear-gradient(45deg, #ff6b6b, #ffa726);
+        color: white;
+    }
+
+    .event-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Members Section */
+    .members {
+        padding: 5rem 0;
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .member-card {
+        text-align: center;
+        padding: 2rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .member-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .member-avatar {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    .member-card h3 {
+        color: #ffd93d;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .member-role {
+        color: #ff6b6b;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .member-bio {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    .member-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .skill {
+        background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    /* Contact Section */
+    .contact {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    }
+
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    .contact-info h3 {
+        color: #ffd93d;
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        margin-top: 0.25rem;
+    }
+
+    .contact-item strong {
+        color: #ff6b6b;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .contact-item p {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+
+    .contact-form h3 {
+        color: #ffd93d;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #4ecdc4;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    /* Interactive Elements */
+    .interactive-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: particle 8s linear infinite;
+    }
+
+    @keyframes particle {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .nav-links {
+            display: none;
+        }
+        
+        .features h2, .events h2, .members h2, .contact h2 {
+            font-size: 2rem;
+        }
+        
+        .contact-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .events-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .event-card {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .event-date {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    /* Glassmorphism Effect */
+    .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator::before {
+        content: '↓';
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-5px);
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="interactive-bg" id="particleContainer"></div>
+
+```
+<nav>
+    <div class="nav-content">
+        <div class="logo">ThinkBotz</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#latest">Latest</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#members">Members</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="floating-element">✦</div>
+    <div class="floating-element">◆</div>
+    <div class="floating-element">★</div>
+    
+    <div class="hero-content">
+        <h1>Welcome to the Future</h1>
+        <p>Experience cutting-edge design with immersive interactions that captivate and inspire.</p>
+        <a href="#latest" class="cta-button">Explore Now</a>
+    </div>
+    
+    <div class="scroll-indicator"></div>
+</section>
+
+
+<!-- Latest Event Section with Countdown -->
+<section class="latest-event" id="latest">
+    <div class="container">
+        <h2>Latest Event</h2>
+        <div class="latest-event-card glass">
+            <div class="event-banner">
+                <div class="event-badge">🔥 FEATURED EVENT</div>
+                <h3>AI & Machine Learning Bootcamp 2025</h3>
+                <p class="event-tagline">Transform Your Future with Cutting-Edge Technology</p>
+            </div>
+            
+            <div class="event-details-grid">
+                <div class="event-info">
+                    <div class="info-item">
+                        <span class="info-icon">📅</span>
+                        <div>
+                            <strong>Date</strong>
+                            <p>January 12, 2025</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">⏰</span>
+                        <div>
+                            <strong>Time</strong>
+                            <p>9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <strong>Venue</strong>
+                            <p>Innovation Center, Main Campus</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">👥</span>
+                        <div>
+                            <strong>Capacity</strong>
+                            <p>50 Participants</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="countdown-container">
+                    <h4>Event Starts In</h4>
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-description">
+                <h4>What You'll Learn</h4>
+                <div class="learning-points">
+                    <div class="point">🤖 Machine Learning Fundamentals</div>
+                    <div class="point">🧠 Neural Networks & Deep Learning</div>
+                    <div class="point">📊 Data Analysis & Visualization</div>
+                    <div class="point">🛠️ Hands-on Project Development</div>
+                </div>
+            </div>
+            
+            <div class="event-actions">
+                <button class="register-btn">Register Now</button>
+                <button class="learn-more-btn">Learn More</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section class="events" id="events">
+    <div class="container">
+        <h2>Upcoming Events</h2>
+        <div class="events-grid">
+            <div class="event-card glass">
+                <div class="event-date">
+                    <span class="day">15</span>
+                    <span class="month">DEC</span>
+                </div>
+                <div class="event-content">
+                    <h3>AI Workshop 2025</h3>
+                    <p class="event-time">⏰ 2:00 PM - 5:00 PM</p>
+                    <p class="event-location">📍 Tech Hub, Room 301</p>
+                    <p class="event-description">Join us for an intensive workshop on machine learning fundamentals and practical AI applications.</p>
+                    <div class="event-buttons">
+                        <button class="event-btn view-more">View More</button>
+                        <button class="event-btn apply">Apply</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-card glass">
+                <div class="event-date">
+                    <span class="day">22</span>
+                    <span class="month">DEC</span>
+                </div>
+                <div class="event-content">
+                    <h3>Robotics Competition</h3>
+                    <p class="event-time">⏰ 10:00 AM - 6:00 PM</p>
+                    <p class="event-location">📍 Engineering Building</p>
+                    <p class="event-description">Annual robotics competition featuring autonomous navigation and problem-solving challenges.</p>
+                    <div class="event-buttons">
+                        <button class="event-btn view-more">View More</button>
+                        <button class="event-btn apply">Apply</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="event-card glass">
+                <div class="event-date">
+                    <span class="day">05</span>
+                    <span class="month">JAN</span>
+                </div>
+                <div class="event-content">
+                    <h3>Tech Talk: Future of AI</h3>
+                    <p class="event-time">⏰ 7:00 PM - 9:00 PM</p>
+                    <p class="event-location">📍 Virtual Event</p>
+                    <p class="event-description">Industry experts discuss the latest trends and future possibilities in artificial intelligence.</p>
+                    <div class="event-buttons">
+                        <button class="event-btn view-more">View More</button>
+                        <button class="event-btn apply">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Members Section -->
+<section class="members" id="members">
+    <div class="container">
+        <h2>Student Association Members</h2>
+        <div class="members-grid">
+            <div class="member-card glass">
+                <div class="member-avatar">👨‍💻</div>
+                <h3>Alex Chen</h3>
+                <p class="member-role">President</p>
+                <p class="member-bio">Computer Science major specializing in AI and machine learning. Leading ThinkBotz towards innovation.</p>
+                <div class="member-skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">AI/ML</span>
+                    <span class="skill">Leadership</span>
+                </div>
+            </div>
+            
+            <div class="member-card glass">
+                <div class="member-avatar">👩‍🔬</div>
+                <h3>Sarah Johnson</h3>
+                <p class="member-role">Vice President</p>
+                <p class="member-bio">Robotics Engineering student with passion for autonomous systems and IoT development.</p>
+                <div class="member-skills">
+                    <span class="skill">Robotics</span>
+                    <span class="skill">C++</span>
+                    <span class="skill">IoT</span>
+                </div>
+            </div>
+            
+            <div class="member-card glass">
+                <div class="member-avatar">👨‍🎓</div>
+                <h3>Mike Rodriguez</h3>
+                <p class="member-role">Technical Lead</p>
+                <p class="member-bio">Full-stack developer and cybersecurity enthusiast, managing our technical projects and workshops.</p>
+                <div class="member-skills">
+                    <span class="skill">Full Stack</span>
+                    <span class="skill">Security</span>
+                    <span class="skill">DevOps</span>
+                </div>
+            </div>
+            
+            <div class="member-card glass">
+                <div class="member-avatar">👩‍💼</div>
+                <h3>Emma Davis</h3>
+                <p class="member-role">Events Coordinator</p>
+                <p class="member-bio">Business and Technology student, organizing engaging events and building community partnerships.</p>
+                <div class="member-skills">
+                    <span class="skill">Event Planning</span>
+                    <span class="skill">Marketing</span>
+                    <span class="skill">Networking</span>
+                </div>
+            </div>
+            
+            <div class="member-card glass">
+                <div class="member-avatar">👨‍🏫</div>
+                <h3>David Park</h3>
+                <p class="member-role">Research Coordinator</p>
+                <p class="member-bio">PhD student in Machine Learning, coordinating research initiatives and academic collaborations.</p>
+                <div class="member-skills">
+                    <span class="skill">Research</span>
+                    <span class="skill">Deep Learning</span>
+                    <span class="skill">Academia</span>
+                </div>
+            </div>
+            
+            <div class="member-card glass">
+                <div class="member-avatar">👩‍🎨</div>
+                <h3>Lisa Wang</h3>
+                <p class="member-role">Creative Director</p>
+                <p class="member-bio">UI/UX Design student creating amazing visual experiences and managing our digital presence.</p>
+                <div class="member-skills">
+                    <span class="skill">UI/UX</span>
+                    <span class="skill">Design</span>
+                    <span class="skill">Branding</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Connect With Us</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <div>
+                        <strong>Email</strong>
+                        <p>hello@thinkbotz.edu</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <div>
+                        <strong>Phone</strong>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <strong>Location</strong>
+                        <p>Tech Building, Room 205<br>University Campus</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕒</span>
+                    <div>
+                        <strong>Office Hours</strong>
+                        <p>Mon-Fri: 9AM-6PM<br>Sat: 10AM-4PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form glass">
+                <h3>Send us a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Select Interest</option>
+                            <option value="membership">Membership</option>
+                            <option value="events">Events</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Particle System
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        particle.style.opacity = Math.random() * 0.5 + 0.2;
+        
+        document.getElementById('particleContainer').appendChild(particle);
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 8000);
+    }
+
+    // Create particles continuously
+    setInterval(createParticle, 300);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Dynamic navigation background
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(0, 0, 0, 0.3)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.1)';
+        }
+    });
+
+    // Interactive mouse effects
+    document.addEventListener('mousemove', (e) => {
+        const cursor = document.querySelector('.hero');
+        if (cursor) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            cursor.style.background = `linear-gradient(${x * 360}deg, #667eea ${y * 50}%, #764ba2 ${100 - y * 50}%)`;
+        }
+    });
+
+    // Feature card interactions
+    document.querySelectorAll('.member-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.animation = 'pulse 1s ease infinite';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.animation = 'none';
+        });
+    });
+
+    // Countdown Timer
+    function updateCountdown() {
+        const eventDate = new Date('2025-09-12T09:00:00').getTime();
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+        if (timeLeft < 0) {
+            document.getElementById('countdown').innerHTML = '<div style="color: #ff6b6b; font-size: 1.5rem;">Event Started!</div>';
+        }
+    }
+
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Initial call
+
+    // Latest event button interactions
+    document.querySelector('.register-btn').addEventListener('click', function() {
+        alert('Registration form would open here!');
+    });
+
+    document.querySelector('.learn-more-btn').addEventListener('click', function() {
+        alert('More details about the bootcamp would be displayed!');
+    });
+    document.querySelectorAll('.event-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (this.classList.contains('view-more')) {
+                alert('Event details would open in a modal or new page');
+            } else if (this.classList.contains('apply')) {
+                alert('Application form would open');
+            }
+        });
+    });
+
+    // Form submission
+    document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We\'ll get back to you soon.');
+        this.reset();
+    });
+
+    // Welcome animation
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+</script>
+
+</body>
+</html>
+
+
